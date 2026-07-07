@@ -141,6 +141,16 @@ vercel
 
 ## Running the Server
 
+### Local development tips
+
+- Run the server with `npm run dev` for automatic restarts while editing.
+- Seed sample data with `npm run seed` before testing booking and payment flows.
+- For frontend integration, make sure `CLIENT_URL` matches the address of your client app.
+
+### API quick check
+
+After starting the server, open `http://localhost:5000/health` to verify the API and database configuration.
+
 ```bash
 # Development mode
 npm run dev

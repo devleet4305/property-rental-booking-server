@@ -21,6 +21,10 @@ import transactionRoutes from './routes/transactions/transaction.routes.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Basic production-friendly defaults
+app.set('trust proxy', 1);
+app.disable('x-powered-by');
+
 // Connect to MongoDB
 connectDB();
 
@@ -59,7 +63,16 @@ app.get('/', (req, res) => {
     status: 'active',
     environment: process.env.NODE_ENV || 'development',
     timestamp: new Date().toISOString(),
-    version: '1.0.0'
+    version: '1.0.0',
+    endpoints: ['/health', '/properties', '/bookings', '/payments']
+  });
+});
+
+app.get('/api', (req, res) => {
+  res.json({
+    service: 'Property Rental API',
+    documentation: '/health',
+    status: 'active'
   });
 });
 
